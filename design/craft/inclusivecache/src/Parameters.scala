@@ -114,11 +114,11 @@ object InclusiveCachePortParameters
 
 case class InclusiveCacheMicroParameters(
   writeBytes: Int, // backing store update granularity
-  memCycles:  Int = 40, // # of L2 clock cycles for a memory round-trip (50ns @ 800MHz)
-  portFactor: Int = 4,  // numSubBanks = (widest TL port * portFactor) / writeBytes
+  memCycles:  Int = 3, // # of L2 clock cycles for a memory round-trip (50ns @ 800MHz)
+  portFactor: Int = 2,  // numSubBanks = (widest TL port * portFactor) / writeBytes
   dirReg:     Boolean = false,
-  innerBuf:   InclusiveCachePortParameters = InclusiveCachePortParameters.fullC, // or none
-  outerBuf:   InclusiveCachePortParameters = InclusiveCachePortParameters.full)   // or flowAE
+  innerBuf:   InclusiveCachePortParameters = InclusiveCachePortParameters.none, // or none
+  outerBuf:   InclusiveCachePortParameters = InclusiveCachePortParameters.flowAE)   // or flowAE
 {
   require (writeBytes > 0 && isPow2(writeBytes))
   require (memCycles > 0)
